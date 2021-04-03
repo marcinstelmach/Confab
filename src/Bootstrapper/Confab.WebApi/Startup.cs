@@ -1,8 +1,9 @@
 namespace Confab.WebApi
 {
+    using Confab.Modules.Conferences.Api;
+    using Confab.Shared.Infrastructure;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
 
@@ -10,7 +11,8 @@ namespace Confab.WebApi
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddInfrastructure();
+            services.AddConferences();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -20,12 +22,7 @@ namespace Confab.WebApi
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRouting();
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-                endpoints.MapGet("/", async x => await x.Response.WriteAsync("Hello"));
-            });
+            app.UseInfrastructure();
         }
     }
 }
