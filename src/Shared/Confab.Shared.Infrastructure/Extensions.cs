@@ -3,7 +3,9 @@
 [assembly: InternalsVisibleTo("Confab.WebApi")]
 namespace Confab.Shared.Infrastructure
 {
+    using Confab.Shared.Abstractions;
     using Confab.Shared.Infrastructure.Api;
+    using Confab.Shared.Infrastructure.Services;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.DependencyInjection;
@@ -12,6 +14,7 @@ namespace Confab.Shared.Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
+            services.AddSingleton<IDateTimeService, DateTimeService>();
             services.AddControllers()
                 .ConfigureApplicationPartManager(setup =>
                 {
