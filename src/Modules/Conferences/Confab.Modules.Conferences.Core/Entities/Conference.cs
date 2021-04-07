@@ -4,6 +4,18 @@
 
     public class Conference
     {
+        public Conference(string name, string location, string logoUrl, int? participantsLimit, DateTimeOffset from, DateTimeOffset to, Host host)
+        {
+            Id = Guid.NewGuid();
+            Name = name;
+            Location = location;
+            LogoUrl = logoUrl;
+            ParticipantsLimit = participantsLimit;
+            From = from;
+            To = to;
+            Host = host;
+        }
+
         public Guid Id { get; set; }
 
         public Host Host { get; set; }
