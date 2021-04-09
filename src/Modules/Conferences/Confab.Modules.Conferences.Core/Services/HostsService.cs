@@ -75,17 +75,17 @@
             Id = host.Id,
             Name = host.Name,
             Description = host.Description,
-            Conferences = host.Conferences.Select(x => new ConferenceDto
-            {
-                Id = x.Id,
-                Host = x.Host,
-                Location = x.Location,
-                LogoUrl = x.LogoUrl,
-                ParticipantsLimit = x.ParticipantsLimit,
-                Name = x.Name,
-                From = x.From,
-                To = x.To
-            })
+            ////Conferences = host.Conferences.Select(x => new ConferenceDto
+            ////{
+            ////    Id = x.Id,
+            ////    Host = x.Host,
+            ////    Location = x.Location,
+            ////    LogoUrl = x.LogoUrl,
+            ////    ParticipantsLimit = x.ParticipantsLimit,
+            ////    Name = x.Name,
+            ////    From = x.From,
+            ////    To = x.To
+            ////})
         };
     }
 }

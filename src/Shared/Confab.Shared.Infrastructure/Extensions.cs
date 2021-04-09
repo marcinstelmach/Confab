@@ -5,6 +5,7 @@ namespace Confab.Shared.Infrastructure
 {
     using Confab.Shared.Abstractions;
     using Confab.Shared.Infrastructure.Api;
+    using Confab.Shared.Infrastructure.Exceptions;
     using Confab.Shared.Infrastructure.Services;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Http;
@@ -14,6 +15,7 @@ namespace Confab.Shared.Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
+            services.AddErrorHandling();
             services.AddSingleton<IDateTimeService, DateTimeService>();
             services.AddControllers()
                 .ConfigureApplicationPartManager(setup =>
@@ -25,6 +27,7 @@ namespace Confab.Shared.Infrastructure
 
         public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder app)
         {
+            app.UserErrorHandling();
             app.UseRouting();
             app.UseEndpoints(endpoints =>
             {
