@@ -16,6 +16,10 @@
             Host = host;
         }
 
+        private Conference()
+        {
+        }
+
         public Guid Id { get; set; }
 
         public Host Host { get; set; }

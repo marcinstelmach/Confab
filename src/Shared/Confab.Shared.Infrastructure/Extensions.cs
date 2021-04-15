@@ -6,6 +6,7 @@ namespace Confab.Shared.Infrastructure
     using Confab.Shared.Abstractions;
     using Confab.Shared.Infrastructure.Api;
     using Confab.Shared.Infrastructure.Exceptions;
+    using Confab.Shared.Infrastructure.MsSql;
     using Confab.Shared.Infrastructure.Services;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Http;
@@ -17,11 +18,13 @@ namespace Confab.Shared.Infrastructure
         {
             services.AddErrorHandling();
             services.AddSingleton<IDateTimeService, DateTimeService>();
+            services.AddHostedService<AppInitializer>();
             services.AddControllers()
                 .ConfigureApplicationPartManager(setup =>
                 {
                     setup.FeatureProviders.Add(new InternalControllerFeatureProvider());
                 });
+            services.AddSqlServerConfiguration();
             return services;
         }
 

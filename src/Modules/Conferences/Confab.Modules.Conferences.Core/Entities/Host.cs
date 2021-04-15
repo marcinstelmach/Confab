@@ -12,6 +12,10 @@
             Description = description;
         }
 
+        private Host()
+        {
+        }
+
         public Guid Id { get; set; }
 
         public string Name { get; set; }

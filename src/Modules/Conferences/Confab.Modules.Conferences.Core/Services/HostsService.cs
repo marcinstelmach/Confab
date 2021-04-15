@@ -26,6 +26,7 @@
             await Task.CompletedTask;
             var host = new Host(dto.Name, dto.Description);
             _hostsRepository.Add(host);
+            await _hostsRepository.UnitOfWork.SaveChangesAsync();
         }
 
         public async Task<HostDto> GetAsync(Guid id)
@@ -52,6 +53,7 @@
 
             host.Name = dto.Name;
             host.Description = dto.Description;
+            await _hostsRepository.UnitOfWork.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(Guid id)
@@ -68,6 +70,7 @@
             }
 
             _hostsRepository.Delete(host);
+            await _hostsRepository.UnitOfWork.SaveChangesAsync();
         }
 
         private static HostDto Map(Host host) => new HostDto

@@ -4,8 +4,9 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using Confab.Modules.Conferences.Core.Entities;
+    using Confab.Shared.Abstractions.Repositories;
 
-    internal interface IHostsRepository
+    internal interface IHostsRepository : IRepository
     {
         void Add(Host host);
 

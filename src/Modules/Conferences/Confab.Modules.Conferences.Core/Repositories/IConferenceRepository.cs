@@ -4,8 +4,9 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using Confab.Modules.Conferences.Core.Entities;
+    using Confab.Shared.Abstractions.Repositories;
 
-    internal interface IConferenceRepository
+    internal interface IConferenceRepository : IRepository
     {
         void Add(Conference conference);
 

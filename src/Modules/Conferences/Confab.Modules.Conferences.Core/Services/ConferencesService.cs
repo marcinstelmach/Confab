@@ -33,6 +33,7 @@
 
             var conference = new Conference(dto.Name, dto.Location, dto.LogoUrl, dto.ParticipantsLimit, dto.From, dto.To, host);
             _conferenceRepository.Add(conference);
+            await _conferenceRepository.UnitOfWork.SaveChangesAsync();
         }
 
         public async Task<ConferenceDto> GetAsync(Guid id)
@@ -57,7 +58,8 @@
                 throw new ConferenceNotFoundException(dto.Id);
             }
 
-            // update properties
+            conference.Name = dto.Name;
+            await _conferenceRepository.UnitOfWork.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(Guid id)
@@ -74,6 +76,7 @@
             }
 
             _conferenceRepository.Delete(conference);
+            await _conferenceRepository.UnitOfWork.SaveChangesAsync();
         }
 
         private static ConferenceDto Map(Conference conference)
