@@ -9,10 +9,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App"></FrameworkReference>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Humanizer" Version="2.8.26" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.5" />
   </ItemGroup>

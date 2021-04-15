@@ -32,11 +32,6 @@ namespace Confab.Shared.Infrastructure
         {
             app.UserErrorHandling();
             app.UseRouting();
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-                endpoints.MapGet("/", async x => await x.Response.WriteAsync("Hello"));
-            });
             return app;
         }
     }
