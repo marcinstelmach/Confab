@@ -1,6 +1,7 @@
 namespace Confab.WebApi
 {
     using System.Threading.Tasks;
+    using Confab.Shared.Infrastructure.Modules;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Hosting;
 
@@ -14,6 +15,7 @@ namespace Confab.WebApi
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                });
+                })
+                .ConfigureModules();
     }
 }

@@ -6,17 +6,37 @@
     using System.Linq;
     using System.Reflection;
     using Confab.Shared.Abstractions.Modules;
+    using Confab.Shared.Infrastructure;
+    using Microsoft.Extensions.Configuration;
 
     internal static class ModuleLoader
     {
-        public static IEnumerable<Assembly> LoadAssemblies()
+        private const string ModulePart = "Confab.Modules.";
+
+        public static IEnumerable<Assembly> LoadAssemblies(IConfiguration configuration)
         {
             var assemblies = AppDomain.CurrentDomain.GetAssemblies().ToList();
             var locations = assemblies.Where(x => !x.IsDynamic).Select(x => x.Location);
-            var files = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "*.dll")
-                .Where(x => !locations.Contains(x, StringComparer.InvariantCultureIgnoreCase));
+            var modules = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "*.dll")
+                .Where(x => !locations.Contains(x, StringComparer.InvariantCultureIgnoreCase))
+                .ToList();
 
-            foreach (var file in files)
+            var disabledModules = new List<string>();
+            foreach (var file in modules)
+            {
+                if (file.Contains(ModulePart))
+                {
+                    var moduleName = file.Split(ModulePart)[1].Split(".")[0];
+                    var enabled = configuration.GetValue<bool>($"{moduleName}:module:enabled");
+                    if (!enabled)
+                    {
+                        disabledModules.Add(file);
+                    }
+                }
+            }
+
+            modules = modules.RemoveMany(disabledModules).ToList();
+            foreach (var file in modules)
             {
                 assemblies.Add(AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName(file)));
             }

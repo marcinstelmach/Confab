@@ -29,10 +29,12 @@
             using var scope = _serviceProvider.CreateScope();
             foreach (var dbContextType in dbContextTypes)
             {
-                var dbContext = scope.ServiceProvider.GetRequiredService(dbContextType) as DbContext;
-                _logger.LogInformation($"Running migrations for {dbContextType.Name}");
-                await dbContext.Database.MigrateAsync(cancellationToken);
-                _logger.LogInformation($"Migrations for {dbContextType.Name} successfully applied.");
+                if (scope.ServiceProvider.GetService(dbContextType) is DbContext dbContext)
+                {
+                    _logger.LogInformation($"Running migrations for {dbContextType.Name}");
+                    await dbContext.Database.MigrateAsync(cancellationToken);
+                    _logger.LogInformation($"Migrations for {dbContextType.Name} successfully applied.");
+                }
             }
         }
 

@@ -7,6 +7,7 @@ namespace Confab.WebApi
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
+    using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
 
     public class Startup
@@ -14,15 +15,15 @@ namespace Confab.WebApi
         private readonly IEnumerable<Assembly> _assemblies;
         private readonly IEnumerable<IModule> _modules;
 
-        public Startup()
+        public Startup(IConfiguration configuration)
         {
-            _assemblies = ModuleLoader.LoadAssemblies();
+            _assemblies = ModuleLoader.LoadAssemblies(configuration);
             _modules = ModuleLoader.LoadModules(_assemblies);
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddInfrastructure();
+            services.AddInfrastructure(_assemblies, _modules);
             foreach (var module in _modules)
             {
                 module.Load(services);
