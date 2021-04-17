@@ -3,7 +3,7 @@
     using System;
     using Confab.Shared.Abstractions.Exceptions;
 
-    public class HostNotFoundException : ConfabException
+    public class HostNotFoundException : ConfabNotFoundException
     {
         public HostNotFoundException(Guid id)
             : base($"Host with Id: '{id}' was not found.")

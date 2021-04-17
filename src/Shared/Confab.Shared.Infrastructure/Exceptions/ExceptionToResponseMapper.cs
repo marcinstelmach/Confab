@@ -15,6 +15,7 @@
             return exception switch
             {
                 ConfabException => new ExceptionResponse(new ErrorsResponse(new Error(GetErrorCode(exception), exception.Message)), HttpStatusCode.BadRequest),
+                ConfabNotFoundException => new ExceptionResponse(new ErrorsResponse(new Error(GetErrorCode(exception), exception.Message)), HttpStatusCode.NotFound),
                 _ => new ExceptionResponse(new ErrorsResponse(new Error("InternalError", "Something went wrong")), HttpStatusCode.InternalServerError)
             };
         }
