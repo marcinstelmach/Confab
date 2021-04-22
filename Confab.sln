@@ -31,6 +31,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Confab.Modules.Speakers.Cor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Confab.Modules.Speakers.Api", "src\Modules\Speakers\Confab.Modules.Speakers.Api\Confab.Modules.Speakers.Api.csproj", "{B89257CE-4763-484F-ABC8-8EC4816F7C61}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{A96F709C-0DA4-4DFA-9B52-AD6722E5DB2B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Confab.Modules.Identity.Api", "src\Modules\Identity\Confab.Modules.Identity.Api\Confab.Modules.Identity.Api.csproj", "{794D6B3B-0375-4A9E-A12D-3EC59D515EEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Confab.Modules.Identity.Core", "src\Modules\Identity\Confab.Modules.Identity.Core\Confab.Modules.Identity.Core.csproj", "{13E735CE-EB1D-40D2-BD13-F731D9CD0D11}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +71,14 @@ Global
 		{B89257CE-4763-484F-ABC8-8EC4816F7C61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B89257CE-4763-484F-ABC8-8EC4816F7C61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B89257CE-4763-484F-ABC8-8EC4816F7C61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{794D6B3B-0375-4A9E-A12D-3EC59D515EEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{794D6B3B-0375-4A9E-A12D-3EC59D515EEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{794D6B3B-0375-4A9E-A12D-3EC59D515EEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{794D6B3B-0375-4A9E-A12D-3EC59D515EEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13E735CE-EB1D-40D2-BD13-F731D9CD0D11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13E735CE-EB1D-40D2-BD13-F731D9CD0D11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13E735CE-EB1D-40D2-BD13-F731D9CD0D11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13E735CE-EB1D-40D2-BD13-F731D9CD0D11}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -82,6 +96,9 @@ Global
 		{05F50316-AEA4-4202-A4E2-E18C29071CB9} = {EC25B331-52F0-42C8-968C-F291AD15904A}
 		{2F3ABA43-93FB-45DC-8D26-ED72E6B2FF80} = {05F50316-AEA4-4202-A4E2-E18C29071CB9}
 		{B89257CE-4763-484F-ABC8-8EC4816F7C61} = {05F50316-AEA4-4202-A4E2-E18C29071CB9}
+		{A96F709C-0DA4-4DFA-9B52-AD6722E5DB2B} = {EC25B331-52F0-42C8-968C-F291AD15904A}
+		{794D6B3B-0375-4A9E-A12D-3EC59D515EEE} = {A96F709C-0DA4-4DFA-9B52-AD6722E5DB2B}
+		{13E735CE-EB1D-40D2-BD13-F731D9CD0D11} = {A96F709C-0DA4-4DFA-9B52-AD6722E5DB2B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5B7648B8-EAAB-4D06-999C-029742732A89}

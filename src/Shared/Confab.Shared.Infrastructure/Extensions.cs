@@ -10,6 +10,7 @@ namespace Confab.Shared.Infrastructure
     using Confab.Shared.Abstractions;
     using Confab.Shared.Abstractions.Modules;
     using Confab.Shared.Infrastructure.Api;
+    using Confab.Shared.Infrastructure.Auth;
     using Confab.Shared.Infrastructure.Exceptions;
     using Confab.Shared.Infrastructure.MsSql;
     using Confab.Shared.Infrastructure.Services;
@@ -20,7 +21,9 @@ namespace Confab.Shared.Infrastructure
 
     internal static class Extensions
     {
-        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IEnumerable<Assembly> assemblies, IEnumerable<IModule> enumerable)
+        private const string CorsPolicy = "cors";
+
+        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IEnumerable<Assembly> assemblies, IEnumerable<IModule> modules)
         {
             var disabledModules = new List<string>();
             using var serviceProvider = services.BuildServiceProvider();
@@ -33,9 +36,19 @@ namespace Confab.Shared.Infrastructure
                 }
             }
 
+            services.AddCors(cors =>
+            {
+                cors.AddPolicy(CorsPolicy, x =>
+                {
+                    x.WithOrigins("*")
+                        .WithMethods("POST", "PUT", "DELETE")
+                        .WithHeaders("Content-Type", "Authorization");
+                });
+            });
+
             services.AddErrorHandling();
             services.AddSingleton<IDateTimeService, DateTimeService>();
-            services.AddHostedService<AppInitializer>();
+            ////services.AddHostedService<AppInitializer>();
             services.AddControllers()
                 .ConfigureApplicationPartManager(setup =>
                 {
@@ -50,14 +63,26 @@ namespace Confab.Shared.Infrastructure
                     setup.FeatureProviders.Add(new InternalControllerFeatureProvider());
                 });
             services.AddSqlServerConfiguration();
+            services.AddAuth(modules);
             return services;
         }
 
         public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder app)
         {
+            app.UseCors(CorsPolicy);
             app.UserErrorHandling();
+            app.UseAuthentication();
             app.UseRouting();
+            app.UseAuthorization();
             return app;
+        }
+
+        public static TSettings GetSettings<TSettings>(this IConfiguration configuration, string key = null)
+            where TSettings : new()
+        {
+            TSettings settings = new();
+            configuration.GetSection(key ?? typeof(TSettings).Name).Bind(settings);
+            return settings;
         }
     }
 }

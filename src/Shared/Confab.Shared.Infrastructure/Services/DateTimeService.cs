@@ -9,5 +9,10 @@
         {
             return DateTimeOffset.UtcNow;
         }
+
+        public DateTime GetDateTimeUtcNow()
+        {
+            return DateTime.UtcNow;
+        }
     }
 }

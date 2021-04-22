@@ -5,5 +5,7 @@
     public interface IDateTimeService
     {
         DateTimeOffset GetUtcNow();
+
+        DateTime GetDateTimeUtcNow();
     }
 }
