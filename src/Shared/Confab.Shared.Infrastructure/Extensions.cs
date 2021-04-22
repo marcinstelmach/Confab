@@ -18,6 +18,7 @@ namespace Confab.Shared.Infrastructure
     using Microsoft.AspNetCore.Mvc.ApplicationParts;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.OpenApi.Models;
 
     internal static class Extensions
     {
@@ -46,6 +47,16 @@ namespace Confab.Shared.Infrastructure
                 });
             });
 
+            services.AddSwaggerGen(x =>
+            {
+                x.CustomSchemaIds(y => y.FullName);
+                x.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "Confab API",
+                    Version = "v1"
+                });
+            });
+
             services.AddErrorHandling();
             services.AddSingleton<IDateTimeService, DateTimeService>();
             ////services.AddHostedService<AppInitializer>();
@@ -71,6 +82,14 @@ namespace Confab.Shared.Infrastructure
         {
             app.UseCors(CorsPolicy);
             app.UserErrorHandling();
+            app.UseSwagger();
+            ////app.UseSwaggerUI(x => x.SwaggerEndpoint("/swagger/v1/swagger.json", "Confab"));
+            app.UseReDoc(x =>
+            {
+                x.RoutePrefix = "docs";
+                x.SpecUrl("/swagger/v1/swagger.json");
+                x.DocumentTitle = "Confab API";
+            });
             app.UseAuthentication();
             app.UseRouting();
             app.UseAuthorization();

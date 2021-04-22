@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
     using Confab.Modules.Conferences.Core.Dtos;
     using Confab.Modules.Conferences.Core.Services;
+    using Confab.Shared.Infrastructure.Api;
     using Microsoft.AspNetCore.Mvc;
 
     [Route("api/v1/conferences")]
@@ -17,6 +18,8 @@
         }
 
         [HttpGet]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
         public async Task<IActionResult> GetAsync()
         {
             var dtos = await _conferencesService.FindAsync();
@@ -36,6 +39,7 @@
         }
 
         [HttpPost]
+        [ProducesDefaultContentType]
         public async Task<IActionResult> AddAsync([FromBody] CreateConferenceDto dto)
         {
             await _conferencesService.AddAsync(dto);
