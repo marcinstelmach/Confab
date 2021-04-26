@@ -13,7 +13,7 @@
     {
         private const string ModulePart = "Confab.Modules.";
 
-        public static IEnumerable<Assembly> LoadAssemblies(IConfiguration configuration)
+        public static ICollection<Assembly> LoadAssemblies(IConfiguration configuration)
         {
             var assemblies = AppDomain.CurrentDomain.GetAssemblies().ToList();
             var locations = assemblies.Where(x => !x.IsDynamic).Select(x => x.Location);
@@ -44,12 +44,13 @@
             return assemblies;
         }
 
-        public static IEnumerable<IModule> LoadModules(IEnumerable<Assembly> assemblies)
+        public static ICollection<IModule> LoadModules(IEnumerable<Assembly> assemblies)
             => assemblies
                 .SelectMany(x => x.GetTypes())
                 .Where(x => typeof(IModule).IsAssignableFrom(x) && !x.IsInterface)
                 .OrderBy(x => x.Name)
                 .Select(Activator.CreateInstance)
-                .Cast<IModule>();
+                .Cast<IModule>()
+                .ToArray();
     }
 }

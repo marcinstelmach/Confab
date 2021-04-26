@@ -4,6 +4,7 @@ namespace Confab.WebApi
     using System.Reflection;
     using Confab.Shared.Abstractions.Modules;
     using Confab.Shared.Infrastructure;
+    using Confab.Shared.Infrastructure.Modules;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
@@ -12,8 +13,8 @@ namespace Confab.WebApi
 
     public class Startup
     {
-        private readonly IEnumerable<Assembly> _assemblies;
-        private readonly IEnumerable<IModule> _modules;
+        private readonly ICollection<Assembly> _assemblies;
+        private readonly ICollection<IModule> _modules;
 
         public Startup(IConfiguration configuration)
         {
@@ -30,7 +31,7 @@ namespace Confab.WebApi
             }
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
             app.UseInfrastructure();
             foreach (var module in _modules)
@@ -42,6 +43,7 @@ namespace Confab.WebApi
             {
                 endpoints.MapControllers();
                 endpoints.MapGet("/", async x => await x.Response.WriteAsync("Hello"));
+                endpoints.MapModulesInfo();
             });
         }
     }

@@ -8,13 +8,17 @@ namespace Confab.Shared.Infrastructure
     using System.Linq;
     using System.Reflection;
     using Confab.Shared.Abstractions;
+    using Confab.Shared.Abstractions.Contexts;
     using Confab.Shared.Abstractions.Modules;
     using Confab.Shared.Infrastructure.Api;
     using Confab.Shared.Infrastructure.Auth;
+    using Confab.Shared.Infrastructure.Contexts;
     using Confab.Shared.Infrastructure.Exceptions;
+    using Confab.Shared.Infrastructure.Modules;
     using Confab.Shared.Infrastructure.MsSql;
     using Confab.Shared.Infrastructure.Services;
     using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc.ApplicationParts;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -24,7 +28,7 @@ namespace Confab.Shared.Infrastructure
     {
         private const string CorsPolicy = "cors";
 
-        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IEnumerable<Assembly> assemblies, IEnumerable<IModule> modules)
+        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IEnumerable<Assembly> assemblies, ICollection<IModule> modules)
         {
             var disabledModules = new List<string>();
             using var serviceProvider = services.BuildServiceProvider();
@@ -57,6 +61,10 @@ namespace Confab.Shared.Infrastructure
                 });
             });
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddTransient<IContextFactory, ContextFactory>();
+            services.AddTransient(x => x.GetRequiredService<IContextFactory>().Create());
+            services.AddModuleInfo(modules);
             services.AddErrorHandling();
             services.AddSingleton<IDateTimeService, DateTimeService>();
             ////services.AddHostedService<AppInitializer>();
