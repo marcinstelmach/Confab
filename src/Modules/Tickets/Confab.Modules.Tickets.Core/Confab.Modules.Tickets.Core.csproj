@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\Confab.Shared.Infrastructure\Confab.Shared.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Conferences\Confab.Modules.Conferences.Messages\Confab.Modules.Conferences.Messages.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Dal\Configurations\" />
+    <Folder Include="Dal\Repositories\" />
+    <Folder Include="Dtos\" />
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+
+</Project>

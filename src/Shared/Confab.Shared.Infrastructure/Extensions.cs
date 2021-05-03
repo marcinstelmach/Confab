@@ -8,11 +8,11 @@ namespace Confab.Shared.Infrastructure
     using System.Linq;
     using System.Reflection;
     using Confab.Shared.Abstractions;
-    using Confab.Shared.Abstractions.Contexts;
     using Confab.Shared.Abstractions.Modules;
     using Confab.Shared.Infrastructure.Api;
     using Confab.Shared.Infrastructure.Auth;
     using Confab.Shared.Infrastructure.Contexts;
+    using Confab.Shared.Infrastructure.Events;
     using Confab.Shared.Infrastructure.Exceptions;
     using Confab.Shared.Infrastructure.Modules;
     using Confab.Shared.Infrastructure.MsSql;
@@ -66,6 +66,7 @@ namespace Confab.Shared.Infrastructure
             services.AddTransient(x => x.GetRequiredService<IContextFactory>().Create());
             services.AddModuleInfo(modules);
             services.AddErrorHandling();
+            services.AddEvents(assemblies);
             services.AddSingleton<IDateTimeService, DateTimeService>();
             ////services.AddHostedService<AppInitializer>();
             services.AddControllers()

@@ -27,15 +27,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Confab.Modules.Conferences.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Speakers", "Speakers", "{05F50316-AEA4-4202-A4E2-E18C29071CB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Confab.Modules.Speakers.Core", "src\Modules\Speakers\Confab.Modules.Speakers.Core\Confab.Modules.Speakers.Core.csproj", "{2F3ABA43-93FB-45DC-8D26-ED72E6B2FF80}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Confab.Modules.Speakers.Core", "src\Modules\Speakers\Confab.Modules.Speakers.Core\Confab.Modules.Speakers.Core.csproj", "{2F3ABA43-93FB-45DC-8D26-ED72E6B2FF80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Confab.Modules.Speakers.Api", "src\Modules\Speakers\Confab.Modules.Speakers.Api\Confab.Modules.Speakers.Api.csproj", "{B89257CE-4763-484F-ABC8-8EC4816F7C61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Confab.Modules.Speakers.Api", "src\Modules\Speakers\Confab.Modules.Speakers.Api\Confab.Modules.Speakers.Api.csproj", "{B89257CE-4763-484F-ABC8-8EC4816F7C61}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{A96F709C-0DA4-4DFA-9B52-AD6722E5DB2B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Confab.Modules.Identity.Api", "src\Modules\Identity\Confab.Modules.Identity.Api\Confab.Modules.Identity.Api.csproj", "{794D6B3B-0375-4A9E-A12D-3EC59D515EEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Confab.Modules.Identity.Api", "src\Modules\Identity\Confab.Modules.Identity.Api\Confab.Modules.Identity.Api.csproj", "{794D6B3B-0375-4A9E-A12D-3EC59D515EEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Confab.Modules.Identity.Core", "src\Modules\Identity\Confab.Modules.Identity.Core\Confab.Modules.Identity.Core.csproj", "{13E735CE-EB1D-40D2-BD13-F731D9CD0D11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Confab.Modules.Identity.Core", "src\Modules\Identity\Confab.Modules.Identity.Core\Confab.Modules.Identity.Core.csproj", "{13E735CE-EB1D-40D2-BD13-F731D9CD0D11}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tickets", "Tickets", "{C17CAF0D-E143-4C4C-8462-EA0957FCD596}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Confab.Modules.Tickets.Api", "src\Modules\Tickets\Confab.Modules.Tickets.Api\Confab.Modules.Tickets.Api.csproj", "{34A721BE-5507-4D1C-BD50-053F7BAD9665}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Confab.Modules.Tickets.Core", "src\Modules\Tickets\Confab.Modules.Tickets.Core\Confab.Modules.Tickets.Core.csproj", "{2C077199-2C94-4F00-917C-D2E6AD92B4D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Confab.Modules.Conferences.Messages", "src\Modules\Conferences\Confab.Modules.Conferences.Messages\Confab.Modules.Conferences.Messages.csproj", "{7C254FEA-D13E-4DC3-8EC1-7B5CD55E8DFD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,6 +87,18 @@ Global
 		{13E735CE-EB1D-40D2-BD13-F731D9CD0D11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13E735CE-EB1D-40D2-BD13-F731D9CD0D11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13E735CE-EB1D-40D2-BD13-F731D9CD0D11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34A721BE-5507-4D1C-BD50-053F7BAD9665}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34A721BE-5507-4D1C-BD50-053F7BAD9665}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34A721BE-5507-4D1C-BD50-053F7BAD9665}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34A721BE-5507-4D1C-BD50-053F7BAD9665}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C077199-2C94-4F00-917C-D2E6AD92B4D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C077199-2C94-4F00-917C-D2E6AD92B4D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C077199-2C94-4F00-917C-D2E6AD92B4D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C077199-2C94-4F00-917C-D2E6AD92B4D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C254FEA-D13E-4DC3-8EC1-7B5CD55E8DFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C254FEA-D13E-4DC3-8EC1-7B5CD55E8DFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C254FEA-D13E-4DC3-8EC1-7B5CD55E8DFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C254FEA-D13E-4DC3-8EC1-7B5CD55E8DFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -99,6 +119,10 @@ Global
 		{A96F709C-0DA4-4DFA-9B52-AD6722E5DB2B} = {EC25B331-52F0-42C8-968C-F291AD15904A}
 		{794D6B3B-0375-4A9E-A12D-3EC59D515EEE} = {A96F709C-0DA4-4DFA-9B52-AD6722E5DB2B}
 		{13E735CE-EB1D-40D2-BD13-F731D9CD0D11} = {A96F709C-0DA4-4DFA-9B52-AD6722E5DB2B}
+		{C17CAF0D-E143-4C4C-8462-EA0957FCD596} = {EC25B331-52F0-42C8-968C-F291AD15904A}
+		{34A721BE-5507-4D1C-BD50-053F7BAD9665} = {C17CAF0D-E143-4C4C-8462-EA0957FCD596}
+		{2C077199-2C94-4F00-917C-D2E6AD92B4D2} = {C17CAF0D-E143-4C4C-8462-EA0957FCD596}
+		{7C254FEA-D13E-4DC3-8EC1-7B5CD55E8DFD} = {EB55E5A7-02CF-46DA-9316-B5B8895120B2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5B7648B8-EAAB-4D06-999C-029742732A89}
