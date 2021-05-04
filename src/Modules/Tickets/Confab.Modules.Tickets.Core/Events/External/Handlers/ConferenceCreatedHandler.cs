@@ -6,7 +6,7 @@
     using Confab.Modules.Tickets.Core.Repositories;
     using Confab.Shared.Abstractions.Events;
 
-    internal class ConferenceCreatedHandler : IEventHandler<ConferenceCreated>
+    public class ConferenceCreatedHandler : IEventHandler<ConferenceCreated>
     {
         private readonly IConferencesRepository _conferencesRepository;
 

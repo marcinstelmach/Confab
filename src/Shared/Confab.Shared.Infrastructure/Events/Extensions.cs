@@ -9,11 +9,11 @@
     {
         public static IServiceCollection AddEvents(this IServiceCollection services, IEnumerable<Assembly> assemblies)
         {
-            services.AddSingleton<IEventDispatcher, IEventDispatcher>();
+            services.AddSingleton<IEventDispatcher, EventDispatcher>();
             services.Scan(x => x.FromAssemblies(assemblies)
                 .AddClasses(y => y.AssignableTo(typeof(IEventHandler<>)))
                 .AsImplementedInterfaces()
-                .WithTransientLifetime());
+                .WithScopedLifetime());
 
             return services;
         }

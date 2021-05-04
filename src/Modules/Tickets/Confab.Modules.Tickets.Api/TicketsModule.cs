@@ -5,7 +5,7 @@
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.DependencyInjection;
 
-    public class TicketsModule : IModule
+    internal class TicketsModule : IModule
     {
         public string Name => "Tickets";
 

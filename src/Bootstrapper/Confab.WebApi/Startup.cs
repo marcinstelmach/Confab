@@ -6,7 +6,6 @@ namespace Confab.WebApi
     using Confab.Shared.Infrastructure;
     using Confab.Shared.Infrastructure.Modules;
     using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;

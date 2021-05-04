@@ -16,7 +16,7 @@
             return services;
         }
 
-        public static IServiceCollection AddDbContext<T>(this IServiceCollection services)
+        public static IServiceCollection AddSqlDbContext<T>(this IServiceCollection services)
             where T : DbContext
         {
             using var provider = services.BuildServiceProvider();

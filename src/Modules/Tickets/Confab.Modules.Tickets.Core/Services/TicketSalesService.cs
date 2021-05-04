@@ -58,7 +58,7 @@
                 var tickets = new List<Ticket>();
                 for (var i = 0; i < ticketSale.Amount; i++)
                 {
-                    var ticket = _ticketsFactory.Generate(conference.Id, ticketSale.Id, ticketSale.Price);
+                    var ticket = _ticketsFactory.Generate(conference.Id, ticketSale.Price, ticketSale);
                     tickets.Add(ticket);
                 }
 

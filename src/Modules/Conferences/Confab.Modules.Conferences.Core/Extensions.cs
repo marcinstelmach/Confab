@@ -15,7 +15,7 @@ namespace Confab.Modules.Conferences.Core
     {
         public static IServiceCollection AddCore(this IServiceCollection services)
         {
-            services.AddDbContext<ConferencesDbContext>();
+            services.AddSqlDbContext<ConferencesDbContext>();
 
             services.AddScoped<IHostsRepository, HostsRepository>();
             services.AddScoped<IConferenceRepository, ConferencesRepository>();

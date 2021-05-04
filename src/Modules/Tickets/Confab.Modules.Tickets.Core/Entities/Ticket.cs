@@ -5,19 +5,21 @@
 
     public class Ticket
     {
-        public Ticket(Guid conferenceId, Guid ticketSaleId, decimal? price, DateTime createdAt)
+        public Ticket(Guid conferenceId, decimal? price, TicketSale ticketSale, DateTime createdAt)
         {
             Id = Guid.NewGuid();
             ConferenceId = conferenceId;
-            TicketSaleId = ticketSaleId;
+            TicketSale = ticketSale;
             Price = price;
             Code = Guid.NewGuid().ToString("N");
             CreatedAt = createdAt;
         }
 
-        public Guid Id { get; set; }
+        private Ticket()
+        {
+        }
 
-        public Guid TicketSaleId { get; set; }
+        public Guid Id { get; set; }
 
         public TicketSale TicketSale { get; set; }
 

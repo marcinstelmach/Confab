@@ -59,7 +59,7 @@
                 return;
             }
 
-            ticket = _ticketsFactory.Generate(conferenceId, ticketSale.Id, ticketSale.Price);
+            ticket = _ticketsFactory.Generate(conferenceId, ticketSale.Price, ticketSale);
             ticket.Purchase(userId, utcNow, ticketSale.Price);
             _ticketsRepository.Add(ticket);
             await _ticketsRepository.UnitOfWork.SaveChangesAsync();

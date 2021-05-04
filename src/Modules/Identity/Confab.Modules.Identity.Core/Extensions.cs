@@ -14,7 +14,7 @@ namespace Confab.Modules.Identity.Core
     {
         public static IServiceCollection AddCore(this IServiceCollection services)
         {
-            services.AddDbContext<IdentityDbContext>();
+            services.AddSqlDbContext<IdentityDbContext>();
             services.AddScoped<IUsersRepository, UsersRepository>();
             services.AddTransient<IIdentityService, IdentityService>();
             services.AddTransient<IPasswordHasher<User>, PasswordHasher<User>>();

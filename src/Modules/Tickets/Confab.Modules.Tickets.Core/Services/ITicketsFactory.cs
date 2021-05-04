@@ -5,6 +5,6 @@
 
     public interface ITicketsFactory
     {
-        Ticket Generate(Guid conferenceId, Guid ticketSaleId, decimal? price);
+        Ticket Generate(Guid conferenceId, decimal? price, TicketSale ticketSale);
     }
 }

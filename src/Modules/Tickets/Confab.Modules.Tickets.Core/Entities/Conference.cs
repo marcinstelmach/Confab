@@ -5,7 +5,7 @@
 
     public class Conference
     {
-        public Conference(Guid id, string name, int? participantsLimit, DateTime @from, DateTime to)
+        public Conference(Guid id, string name, int? participantsLimit, DateTimeOffset @from, DateTimeOffset to)
         {
             Id = id;
             Name = name;
@@ -24,9 +24,9 @@
 
         public int? ParticipantsLimit { get; set; }
 
-        public DateTime From { get; set; }
+        public DateTimeOffset From { get; set; }
 
-        public DateTime To { get; set; }
+        public DateTimeOffset To { get; set; }
 
         public ICollection<TicketSale> TicketSales { get; set; }
     }

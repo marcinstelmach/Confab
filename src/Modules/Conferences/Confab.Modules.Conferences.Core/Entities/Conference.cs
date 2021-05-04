@@ -1,8 +1,10 @@
 ﻿namespace Confab.Modules.Conferences.Core.Entities
 {
     using System;
+    using Confab.Modules.Conferences.Messages.Events;
+    using Confab.Shared.Abstractions.Events;
 
-    public class Conference
+    public class Conference  : EventEntity
     {
         public Conference(string name, string location, string logoUrl, int? participantsLimit, DateTimeOffset from, DateTimeOffset to, Host host)
         {
@@ -14,6 +16,8 @@
             From = from;
             To = to;
             Host = host;
+
+            AddEvent(new ConferenceCreated(Id, Name, ParticipantsLimit, From, To));
         }
 
         private Conference()

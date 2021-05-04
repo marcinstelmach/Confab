@@ -13,9 +13,9 @@
             _dateTimeService = dateTimeService;
         }
 
-        public Ticket Generate(Guid conferenceId, Guid ticketSaleId, decimal? price)
+        public Ticket Generate(Guid conferenceId, decimal? price, TicketSale ticketSale)
         {
-            return new(conferenceId, ticketSaleId, price, _dateTimeService.GetDateTimeUtcNow());
+            return new(conferenceId, price, ticketSale, _dateTimeService.GetDateTimeUtcNow());
         }
     }
 }

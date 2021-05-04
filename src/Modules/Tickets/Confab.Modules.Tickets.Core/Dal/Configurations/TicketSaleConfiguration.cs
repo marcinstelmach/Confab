@@ -13,7 +13,7 @@
 
             builder.HasMany(x => x.Tickets)
                 .WithOne(x => x.TicketSale)
-                .HasForeignKey(x => x.TicketSaleId);
+                .HasForeignKey("TicketSaleId");
         }
     }
 }

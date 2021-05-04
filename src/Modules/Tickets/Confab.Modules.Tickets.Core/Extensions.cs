@@ -7,6 +7,7 @@ namespace Confab.Modules.Tickets.Core
     using Confab.Modules.Tickets.Core.Dal.Repositories;
     using Confab.Modules.Tickets.Core.Repositories;
     using Confab.Modules.Tickets.Core.Services;
+    using Confab.Shared.Infrastructure.MsSql;
     using Microsoft.Extensions.DependencyInjection;
 
     internal static class Extensions
@@ -19,6 +20,6 @@ namespace Confab.Modules.Tickets.Core
                 .AddScoped<ITicketsRepository, TicketsRepository>()
                 .AddScoped<ITicketSaleRepository, TicketSaleRepository>()
                 .AddSingleton<ITicketsFactory, TicketsFactory>()
-                .AddDbContext<TicketsDbContext>();
+                .AddSqlDbContext<TicketsDbContext>();
     }
 }

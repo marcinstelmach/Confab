@@ -13,7 +13,7 @@ namespace Confab.Modules.Speakers.Core
     {
         public static IServiceCollection AddCore(this IServiceCollection services)
         {
-            services.AddDbContext<SpeakersDbContext>();
+            services.AddSqlDbContext<SpeakersDbContext>();
             services.AddScoped<ISpeakersRepository, SpeakersRepository>();
             services.AddTransient<ISpeakersService, SpeakersService>();
             return services;

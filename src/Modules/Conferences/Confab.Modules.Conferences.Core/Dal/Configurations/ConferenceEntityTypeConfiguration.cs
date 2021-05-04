@@ -17,6 +17,8 @@
             builder.HasOne(x => x.Host)
                 .WithMany(x => x.Conferences)
                 .HasForeignKey("HostId");
+
+            builder.Ignore(x => x.Events);
         }
     }
 }

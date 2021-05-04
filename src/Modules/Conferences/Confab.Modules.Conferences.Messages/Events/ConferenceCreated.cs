@@ -3,5 +3,5 @@
     using System;
     using Confab.Shared.Abstractions.Events;
 
-    public record ConferenceCreated(Guid Id, string Name, int? ParticipantsLimit, DateTime From, DateTime To) : IEvent;
+    public record ConferenceCreated(Guid Id, string Name, int? ParticipantsLimit, DateTimeOffset From, DateTimeOffset To) : IEvent;
 }
