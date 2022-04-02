@@ -18,6 +18,7 @@ namespace Confab.Shared.Infrastructure
     using Confab.Shared.Infrastructure.Modules;
     using Confab.Shared.Infrastructure.MsSql;
     using Confab.Shared.Infrastructure.Services;
+    using Messaging;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc.ApplicationParts;
@@ -69,6 +70,7 @@ namespace Confab.Shared.Infrastructure
             services.AddModuleRequests(assemblies);
             services.AddErrorHandling();
             services.AddEvents(assemblies);
+            services.AddMessaging();
             services.AddSingleton<IDateTimeService, DateTimeService>();
             services.AddHostedService<AppInitializer>();
             services.AddControllers()

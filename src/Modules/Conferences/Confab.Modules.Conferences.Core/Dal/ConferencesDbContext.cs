@@ -1,26 +1,24 @@
-﻿using Confab.Shared.Abstractions.Modules;
-
-namespace Confab.Modules.Conferences.Core.Dal
+﻿namespace Confab.Modules.Conferences.Core.Dal
 {
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
     using Confab.Modules.Conferences.Core.Entities;
     using Confab.Shared.Abstractions.Events;
     using Confab.Shared.Abstractions.Repositories;
     using Microsoft.EntityFrameworkCore;
+    using Shared.Abstractions.Messaging;
 
     internal class ConferencesDbContext : DbContext, IUnitOfWork
     {
         private const string ConferencesSchemaName = "Conferences";
 
-        private readonly IEventDispatcher _eventDispatcher;
-        private readonly IModuleClient _moduleClient;
+        private readonly IMessageBroker _messageBroker;
 
-        public ConferencesDbContext(DbContextOptions<ConferencesDbContext> options, IEventDispatcher eventDispatcher, IModuleClient moduleClient)
+        public ConferencesDbContext(DbContextOptions<ConferencesDbContext> options, IMessageBroker messageBroker)
             : base(options)
         {
-            _eventDispatcher = eventDispatcher;
-            _moduleClient = moduleClient;
+            _messageBroker = messageBroker;
         }
 
         public DbSet<Conference> Conferences { get; set; }
@@ -30,7 +28,14 @@ namespace Confab.Modules.Conferences.Core.Dal
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             var affectedRows = await base.SaveChangesAsync(cancellationToken);
-            await _moduleClient.PublishAsync(this);
+
+            var events = this.ChangeTracker.Entries<EventEntity>()
+                .Where(x => x.Entity.Events is not null && x.Entity.Events.Any())
+                .SelectMany(x => x.Entity.Events)
+                .Cast<IMessage>()
+                .ToArray();
+            
+            await _messageBroker.PublishAsync(events);
             return affectedRows;
         }
 
