@@ -5,9 +5,9 @@
 
     public interface IEventDispatcher
     {
-        Task DispatchAsync<TEvent>(TEvent eventMessage)
-            where TEvent : class, IEvent;
+        Task PublishAsync<TEvent>(TEvent eventMessage)
+            where TEvent : class, IIntegrationEvent;
 
-        Task DispatchAsync(DbContext context);
+        Task PublishAsync(DbContext context);
     }
 }

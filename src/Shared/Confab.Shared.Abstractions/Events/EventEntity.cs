@@ -4,12 +4,14 @@
 
     public abstract class EventEntity
     {
-        public List<IEvent> Events { get; private set; }
+        private List<IIntegrationEvent> _events;
 
-        public void AddEvent(IEvent @event)
+        public IReadOnlyCollection<IIntegrationEvent> Events => _events;
+
+        protected void AddEvent(IIntegrationEvent integrationEvent)
         {
-            Events ??= new List<IEvent>();
-            Events.Add(@event);
+            _events ??= new List<IIntegrationEvent>();
+            _events.Add(integrationEvent);
         }
     }
 }

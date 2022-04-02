@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
 
     public interface IEventHandler<in TEvent>
-        where TEvent : IEvent
+        where TEvent : IIntegrationEvent
     {
         Task HandleAsync(TEvent eventMessage);
     }

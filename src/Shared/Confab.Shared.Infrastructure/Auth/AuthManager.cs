@@ -31,8 +31,7 @@
             _dateTimeService = dateTimeService;
         }
 
-        public JsonWebToken GenerateToken(Guid userId, string email, string role,
-            IDictionary<string, IEnumerable<string>> claims = null)
+        public JsonWebToken GenerateToken(Guid userId, string email, string role, IDictionary<string, IEnumerable<string>> claims = null)
         {
             var utcNow = _dateTimeService.GetDateTimeUtcNow();
             var jwtClaims = new List<Claim>

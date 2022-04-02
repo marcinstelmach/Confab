@@ -15,7 +15,8 @@
         public EventDispatcher(IServiceProvider serviceProvider)
             => _serviceProvider = serviceProvider;
 
-        public async Task DispatchAsync<TEvent>(TEvent eventMessage) where TEvent : class, IEvent
+        public async Task PublishAsync<TEvent>(TEvent eventMessage)
+            where TEvent : class, IIntegrationEvent
         {
             using var scope = _serviceProvider.CreateScope();
             var handlerType = typeof(IEventHandler<>).MakeGenericType(eventMessage.GetType());
@@ -24,10 +25,9 @@
 
             var tasks = handlers.Select(handler => (Task)method.Invoke(handler, new object[] { eventMessage }));
             await Task.WhenAll(tasks).ConfigureAwait(false);
-
         }
 
-        public async Task DispatchAsync(DbContext context)
+        public async Task PublishAsync(DbContext context)
         {
             var events = context.ChangeTracker
                 .Entries<EventEntity>()
@@ -36,7 +36,7 @@
 
             foreach (var @event in events)
             {
-                await DispatchAsync(@event);
+                await PublishAsync(@event);
             }
         }
     }

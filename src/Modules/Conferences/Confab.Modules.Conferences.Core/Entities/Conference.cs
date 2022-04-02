@@ -1,7 +1,8 @@
-﻿namespace Confab.Modules.Conferences.Core.Entities
+﻿using Confab.Modules.Conferences.Core.Events;
+
+namespace Confab.Modules.Conferences.Core.Entities
 {
     using System;
-    using Confab.Modules.Conferences.Messages.Events;
     using Confab.Shared.Abstractions.Events;
 
     public class Conference  : EventEntity

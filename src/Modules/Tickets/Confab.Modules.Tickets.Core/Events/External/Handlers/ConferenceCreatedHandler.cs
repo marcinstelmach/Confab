@@ -1,11 +1,10 @@
-﻿namespace Confab.Modules.Tickets.Core.Events.External.Handlers
-{
-    using System.Threading.Tasks;
-    using Confab.Modules.Conferences.Messages.Events;
-    using Confab.Modules.Tickets.Core.Entities;
-    using Confab.Modules.Tickets.Core.Repositories;
-    using Confab.Shared.Abstractions.Events;
+﻿using System.Threading.Tasks;
+using Confab.Modules.Tickets.Core.Entities;
+using Confab.Modules.Tickets.Core.Repositories;
+using Confab.Shared.Abstractions.Events;
 
+namespace Confab.Modules.Tickets.Core.Events.External.Handlers
+{
     public class ConferenceCreatedHandler : IEventHandler<ConferenceCreated>
     {
         private readonly IConferencesRepository _conferencesRepository;

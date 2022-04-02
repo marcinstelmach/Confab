@@ -1,4 +1,6 @@
-﻿namespace Confab.Modules.Conferences.Core.Dal
+﻿using Confab.Shared.Abstractions.Modules;
+
+namespace Confab.Modules.Conferences.Core.Dal
 {
     using System.Threading;
     using System.Threading.Tasks;
@@ -12,11 +14,13 @@
         private const string ConferencesSchemaName = "Conferences";
 
         private readonly IEventDispatcher _eventDispatcher;
+        private readonly IModuleClient _moduleClient;
 
-        public ConferencesDbContext(DbContextOptions<ConferencesDbContext> options, IEventDispatcher eventDispatcher)
+        public ConferencesDbContext(DbContextOptions<ConferencesDbContext> options, IEventDispatcher eventDispatcher, IModuleClient moduleClient)
             : base(options)
         {
             _eventDispatcher = eventDispatcher;
+            _moduleClient = moduleClient;
         }
 
         public DbSet<Conference> Conferences { get; set; }
@@ -26,7 +30,7 @@
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             var affectedRows = await base.SaveChangesAsync(cancellationToken);
-            await _eventDispatcher.DispatchAsync(this);
+            await _moduleClient.PublishAsync(this);
             return affectedRows;
         }
 

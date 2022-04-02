@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using Confab.Shared.Abstractions.Contexts;
 
 [assembly: InternalsVisibleTo("Confab.WebApi")]
 namespace Confab.Shared.Infrastructure
@@ -28,7 +29,7 @@ namespace Confab.Shared.Infrastructure
     {
         private const string CorsPolicy = "cors";
 
-        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IEnumerable<Assembly> assemblies, ICollection<IModule> modules)
+        public static IServiceCollection AddInfrastructure(this IServiceCollection services, ICollection<Assembly> assemblies, ICollection<IModule> modules)
         {
             var disabledModules = new List<string>();
             using var serviceProvider = services.BuildServiceProvider();
@@ -63,12 +64,13 @@ namespace Confab.Shared.Infrastructure
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IContextFactory, ContextFactory>();
-            services.AddTransient(x => x.GetRequiredService<IContextFactory>().Create());
+            services.AddTransient<IContext>(x => x.GetRequiredService<IContextFactory>().Create());
             services.AddModuleInfo(modules);
+            services.AddModuleRequests(assemblies);
             services.AddErrorHandling();
             services.AddEvents(assemblies);
             services.AddSingleton<IDateTimeService, DateTimeService>();
-            ////services.AddHostedService<AppInitializer>();
+            services.AddHostedService<AppInitializer>();
             services.AddControllers()
                 .ConfigureApplicationPartManager(setup =>
                 {

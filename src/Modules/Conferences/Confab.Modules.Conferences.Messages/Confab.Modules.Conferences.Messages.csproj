@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Events\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\..\Shared\Confab.Shared.Abstractions\Confab.Shared.Abstractions.csproj" />
   </ItemGroup>
 

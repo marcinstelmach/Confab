@@ -1,4 +1,8 @@
-﻿namespace Confab.Shared.Infrastructure.Modules
+﻿using System.Reflection;
+using System.Threading.Tasks;
+using Confab.Shared.Abstractions.Events;
+
+namespace Confab.Shared.Infrastructure.Modules
 {
     using System.Collections.Generic;
     using System.IO;
@@ -48,6 +52,40 @@
                 var moduleInfoProvider = context.RequestServices.GetRequiredService<ModuleInfoProvider>();
                 return context.Response.WriteAsJsonAsync(moduleInfoProvider.Modules);
             });
+        }
+
+        internal static IServiceCollection AddModuleRequests(this IServiceCollection services, IEnumerable<Assembly> assemblies)
+        {
+            services.AddModuleRegistry(assemblies);
+            services.AddSingleton<IModuleClient, ModuleClient>();
+            services.AddSingleton<IModuleSerializer, JsonModuleSerializer>();
+
+            return services;
+        }
+
+        private static void AddModuleRegistry(this IServiceCollection services, IEnumerable<Assembly> assemblies)
+        {
+            var registry = new ModuleRegistry();
+
+            var types = assemblies.SelectMany(x => x.GetTypes());
+            var eventTypes = types.Where(x => x.IsClass && typeof(IIntegrationEvent).IsAssignableFrom(x));
+
+            services.AddSingleton<IModuleRegistry>(sp =>
+            {
+                var eventDispatcher = sp.GetRequiredService<IEventDispatcher>();
+                var eventDispatcherType = eventDispatcher.GetType();
+
+                foreach (var eventType in eventTypes)
+                {
+                    registry.AddBroadcastAction(eventType, @event =>
+                        (Task)eventDispatcherType.GetMethod(nameof(eventDispatcher.PublishAsync))?
+                            .MakeGenericMethod(eventType).Invoke(eventDispatcher, new[] { @event }));
+                }
+
+                return registry;
+            });
+
+
         }
     }
 }
