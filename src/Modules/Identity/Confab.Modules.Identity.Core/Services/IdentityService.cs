@@ -1,4 +1,7 @@
-﻿namespace Confab.Modules.Identity.Core.Services
+﻿using System.Collections.Generic;
+using System.Text.Json;
+
+namespace Confab.Modules.Identity.Core.Services
 {
     using System;
     using System.Threading.Tasks;

@@ -12,9 +12,11 @@
         {
             IsAuthenticated = claimsPrincipal.Identity?.IsAuthenticated is true;
             Id = IsAuthenticated ? Guid.Parse(claimsPrincipal.Identity.Name) : Guid.Empty;
-            Role = claimsPrincipal.Claims.Single(x => x.Type == ClaimTypes.Role)?.Value;
-            Claims = claimsPrincipal.Claims.GroupBy(x => x.Type)
-                .ToDictionary(x => x.Key, x => x.Select(u => u.Value.ToString()));
+            Role = IsAuthenticated ? claimsPrincipal.Claims.Single(x => x.Type == ClaimTypes.Role)?.Value : string.Empty;
+            Claims = IsAuthenticated
+                ? claimsPrincipal.Claims.GroupBy(x => x.Type)
+                    .ToDictionary(x => x.Key, x => x.Select(u => u.Value.ToString()))
+                : new Dictionary<string, IEnumerable<string>>();
         }
 
         public bool IsAuthenticated { get; }

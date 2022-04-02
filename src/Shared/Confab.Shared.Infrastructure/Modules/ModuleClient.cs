@@ -47,6 +47,13 @@ namespace Confab.Shared.Infrastructure.Modules
         }
 
         private object TranslateType(object value, Type type)
-            => _moduleSerializer.Deserialize(_moduleSerializer.Serialize(value), type);
+        {
+            if (value.GetType() == type)
+            {
+                return value;
+            }
+            
+            return _moduleSerializer.Deserialize(_moduleSerializer.Serialize(value), type);
+        }
     }
 }
