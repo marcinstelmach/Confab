@@ -7,11 +7,13 @@
 
     public static class Extensions
     {
+        private const string SectionName = "MsSqlSettings";
+
         internal static IServiceCollection AddSqlServerConfiguration(this IServiceCollection services)
         {
             using var provider = services.BuildServiceProvider();
             var configuration = provider.GetRequiredService<IConfiguration>();
-            services.Configure<MsSqlSettings>(configuration.GetSection("MsSqlSettings"));
+            services.Configure<MsSqlSettings>(configuration.GetSection(SectionName));
 
             return services;
         }

@@ -39,7 +39,7 @@
                         ValidateIssuer = true,
                         ValidIssuer = settings.Issuer,
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(settings.SecretKey)),
-                        ClockSkew = TimeSpan.FromDays(5)
+                        // ClockSkew = TimeSpan.FromDays(5)
                     };
                 });
 

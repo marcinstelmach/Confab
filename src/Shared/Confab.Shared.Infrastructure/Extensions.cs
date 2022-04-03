@@ -116,5 +116,13 @@ namespace Confab.Shared.Infrastructure
             configuration.GetSection(key ?? typeof(TSettings).Name).Bind(settings);
             return settings;
         }
+
+        public static TSettings GetSettings<TSettings>(this IServiceCollection services, string key = null)
+            where TSettings : new()
+        {
+            using var serviceProvider = services.BuildServiceProvider();
+            var configuration = serviceProvider.GetRequiredService<IConfiguration>();
+            return GetSettings<TSettings>(configuration, key);
+        }
     }
 }
