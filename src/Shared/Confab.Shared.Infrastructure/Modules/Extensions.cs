@@ -68,7 +68,7 @@ namespace Confab.Shared.Infrastructure.Modules
             var registry = new ModuleRegistry();
 
             var types = assemblies.SelectMany(x => x.GetTypes());
-            var eventTypes = types.Where(x => x.IsClass && typeof(IIntegrationEvent).IsAssignableFrom(x));
+            var eventTypes = types.Where(x => x.IsClass && typeof(IEvent).IsAssignableFrom(x));
 
             services.AddSingleton<IModuleRegistry>(sp =>
             {

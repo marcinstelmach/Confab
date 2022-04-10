@@ -3,7 +3,7 @@
 namespace Confab.Shared.Abstractions.Events
 {
     // Market interface
-    public interface IIntegrationEvent : IMessage
+    public interface IEvent : IMessage
     {
     }
 }

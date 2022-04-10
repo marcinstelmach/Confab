@@ -14,7 +14,7 @@
             => _serviceProvider = serviceProvider;
 
         public async Task PublishAsync<TEvent>(TEvent eventMessage)
-            where TEvent : class, IIntegrationEvent
+            where TEvent : class, IEvent
         {
             using var scope = _serviceProvider.CreateScope();
             var handlerType = typeof(IEventHandler<>).MakeGenericType(eventMessage.GetType());

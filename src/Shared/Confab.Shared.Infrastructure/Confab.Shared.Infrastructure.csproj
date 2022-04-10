@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <Folder Include="Contexts\" />
+    <Folder Include="Validation" />
   </ItemGroup>
 
 </Project>

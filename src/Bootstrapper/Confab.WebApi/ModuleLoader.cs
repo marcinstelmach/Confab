@@ -27,6 +27,7 @@
                 if (file.Contains(ModulePart))
                 {
                     var moduleName = file.Split(ModulePart)[1].Split(".")[0];
+                    var section = configuration.GetSection(moduleName);
                     var enabled = configuration.GetValue<bool>($"{moduleName}:module:enabled");
                     if (!enabled)
                     {

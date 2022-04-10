@@ -5,7 +5,7 @@
     public interface IEventDispatcher
     {
         Task PublishAsync<TEvent>(TEvent eventMessage)
-            where TEvent : class, IIntegrationEvent;
+            where TEvent : class, IEvent;
         
     }
 }
